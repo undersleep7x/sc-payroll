@@ -37,7 +37,7 @@ contract Payroll is Ownable, ReentrancyGuard {
         emit EmployeeAdded(_employee);
     }
 
-    function setpaycheck(address _employee, address _token, uint _paycheck) external onlyOwner {
+    function setPaycheck(address _employee, address _token, uint _paycheck) external onlyOwner {
         require(employees[_employee].exists, "Employee does not exist");
         require(supportedTokens[_token], "Token not supported");
         employees[_employee].paychecks[_token] = _paycheck;
@@ -49,7 +49,7 @@ contract Payroll is Ownable, ReentrancyGuard {
         emit EmployeeRemoved(_employee);
     }
 
-    function withdrawpaycheck(address _token) external nonReentrant {
+    function withdrawPaycheck(address _token) external nonReentrant {
         require(employees[msg.sender].exists, "Not an employee");
         require(supportedTokens[_token], "Token not supported");
 
